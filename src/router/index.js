@@ -26,10 +26,19 @@ const router = createRouter({
         component: Register,
         meta: {show: false}
     }, {
-        path: '/search/:keyword',
+        name: 'search',
+        path: '/search/:keyword?',
         component: Search,
-        meta: {show: true}
-    }]
+        meta: {show: true},
+        //路由组件传递props数据
+        //布尔值写法
+        // props:true,
+        //对象写法
+        // props: {a: 1, b: 2},
+        props: ($route) => {
+            return {keyword: $route.params.keyword, k: $route.query.k};
+        }
+    }],
 })
 
 export default router

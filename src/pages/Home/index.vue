@@ -1,13 +1,16 @@
 <template>
   <div>
-    主页
+    <!--三级联动-->
+    <TypeNav></TypeNav>
   </div>
 </template>
 
 <script>
 
+import TypeNav from "@/components/TypeNav";
 export default {
   name: 'Home',
+  components: {TypeNav},
   data() {
     return {}
   }
