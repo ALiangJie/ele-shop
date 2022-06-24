@@ -1,4 +1,6 @@
 <template>
+  <h1>param参数：{{$route.params.keyword}}==={{keyword}}</h1>
+  <h1>query：{{$route.query.k}}===={{k}}</h1>
   <div>
     <div class="main">
       <div class="py-container">
@@ -48,9 +50,7 @@
 <script>
 export default {
   name: "Search",
-  data() {
-    return {}
-  }
+  props:['keyword','k']
 };
 </script>
 
