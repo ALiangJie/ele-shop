@@ -15,7 +15,6 @@
           <div class="swiper-button-next"></div>
         </div> -->
         <!-- 轮播图全局组件 -->
-        <Carousel :data="bannerList"/>
       </div>
       <div class="right">
         <div class="news">
@@ -83,7 +82,7 @@
           </li>
         </ul>
         <div class="ads">
-          <img src="./images/ad1.png" />
+          <img src="./images/ad1.png" alt=""/>
         </div>
       </div>
     </div>
@@ -91,43 +90,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-//引入swiper
-import Swiper from "swiper";
 export default {
   name: "ListContainer",
-  computed: {
-    ...mapState({
-      bannerList: (state) => state.home.bannerList,
-    }),
-  },
-  mounted() {
-    // 获取数据
-    this.$store.dispatch("bannerList");
-  },
-  // 已经被封装到Carousel轮播图全局组件
-  // watch: {
-  //   bannerList: {
-  //     handler() {
-  //       // 数据更新了，但是DOM还没有更新
-  //       this.$nextTick(() => {
-  //         new Swiper(".swiper-container", {
-  //           loop: true, // 循环模式选项
-  //           // 如果需要分页器
-  //           pagination: {
-  //             el: ".swiper-pagination",
-  //             clickable: true,
-  //           },
-  //           // 如果需要前进后退按钮
-  //           navigation: {
-  //             nextEl: ".swiper-button-next",
-  //             prevEl: ".swiper-button-prev",
-  //           },
-  //         });
-  //       });
-  //     },
-  //   },
-  // },
 };
 </script>
 
@@ -135,6 +99,7 @@ export default {
 .list-container {
   width: 1200px;
   margin: 0 auto;
+
   .sortList {
     height: 464px;
     padding-left: 210px;

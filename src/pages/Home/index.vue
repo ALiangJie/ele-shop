@@ -2,18 +2,19 @@
   <div>
     <!--三级联动-->
     <TypeNav></TypeNav>
+    <ListContainer></ListContainer>
   </div>
 </template>
 
 <script>
+//引入其余组件
+import ListContainer from "@/pages/Home/ListContainer";
 
-import TypeNav from "@/components/TypeNav";
 export default {
   name: 'Home',
-  components: {TypeNav},
-  data() {
-    return {}
-  }
+  components: {
+    ListContainer
+  },
 }
 </script>
 
