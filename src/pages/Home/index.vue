@@ -4,6 +4,7 @@
     <TypeNav></TypeNav>
     <ListContainer></ListContainer>
     <TodayRecommend></TodayRecommend>
+    <Rank></Rank>
   </div>
 </template>
 
@@ -11,10 +12,12 @@
 //引入其余组件
 import ListContainer from "@/pages/Home/ListContainer";
 import TodayRecommend from "@/pages/Home/TodayRecommend";
+import Rank from "@/pages/Home/Rank";
 
 export default {
   name: 'Home',
   components: {
+    Rank,
     TodayRecommend,
     ListContainer
   },
