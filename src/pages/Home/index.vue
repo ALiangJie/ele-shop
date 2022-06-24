@@ -6,6 +6,8 @@
     <TodayRecommend></TodayRecommend>
     <Rank></Rank>
     <Like></Like>
+    <Floor></Floor>
+    <Floor></Floor>
   </div>
 </template>
 
@@ -15,10 +17,12 @@ import ListContainer from "@/pages/Home/ListContainer";
 import TodayRecommend from "@/pages/Home/TodayRecommend";
 import Rank from "@/pages/Home/Rank";
 import Like from "@/pages/Home/Like";
+import Floor from "@/pages/Home/Floor";
 
 export default {
   name: 'Home',
   components: {
+    Floor,
     Like,
     Rank,
     TodayRecommend,

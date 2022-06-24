@@ -4,15 +4,11 @@
     <div class="floor">
       <div class="py-container">
         <div class="title clearfix">
-          <h3 class="fl">{{ list.name }}</h3>
+          <h3 class="fl"></h3>
           <div class="fr">
-            <ul
-              class="nav-tabs clearfix"
-              v-for="(f2, index) in list.navList"
-              :key="index"
-            >
+            <ul class="nav-tabs clearfix">
               <li class="active">
-                <a href="#tab1" data-toggle="tab">{{ f2.text }}</a>
+                <a href=""></a>
               </li>
             </ul>
           </div>
@@ -22,14 +18,12 @@
             <div class="floor-1">
               <div class="blockgary">
                 <ul class="jd-list">
-                  <li v-for="(f3, index) in list.keywords" :key="index">
-                    {{ f3 }}
+                  <li >
                   </li>
                 </ul>
-                <img :src="list.imgUrl" />
               </div>
               <div class="floorBanner">
-                <!-- <div class="swiper-container">
+                <!-- <div class="swiper-container"
                   <div class="swiper-wrapper">
                     <div
                       class="swiper-slide"
@@ -45,28 +39,6 @@
                   <div class="swiper-button-next"></div>
                 </div> -->
                 <!-- 封装全局轮播图组件 -->
-                <Carousel :data="list.carouselList" />
-              </div>
-              <div class="split">
-                <span class="floor-x-line"></span>
-                <div class="floor-conver-pit">
-                  <img :src="list.recommendList[0]" />
-                </div>
-                <div class="floor-conver-pit">
-                  <img :src="list.recommendList[1]" />
-                </div>
-              </div>
-              <div class="split center">
-                <img :src="list.bigImg" />
-              </div>
-              <div class="split">
-                <span class="floor-x-line"></span>
-                <div class="floor-conver-pit">
-                  <img :src="list.recommendList[2]" />
-                </div>
-                <div class="floor-conver-pit">
-                  <img :src="list.recommendList[3]" />
-                </div>
               </div>
             </div>
           </div>
@@ -77,36 +49,35 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import Swiper from "swiper";
+
 export default {
   name: "Floor",
-  // 获取父给子传递的数据
-  props: ["list"],
-  // 已经被封装到Carousel轮播图全局组件
-  // watch: {
-  // immediate:true,
-  //   list: {
-  //     handler() {
-  //       // 数据更新了，但是DOM还没有更新
-  //       this.$nextTick(() => {
-  //         new Swiper(".swiper-container", {
-  //           loop: true, // 循环模式选项
-  //           // 如果需要分页器
-  //           pagination: {
-  //             el: ".swiper-pagination",
-  //             clickable: true,
-  //           },
-  //           // 如果需要前进后退按钮
-  //           navigation: {
-  //             nextEl: ".swiper-button-next",
-  //             prevEl: ".swiper-button-prev",
-  //           },
-  //         });
-  //       });
-  //     },
-  //   },
-  // },
+  // // 获取父给子传递的数据
+  // props: ["list"],
+  // // 已经被封装到Carousel轮播图全局组件
+  // // watch: {
+  // // immediate:true,
+  // //   list: {
+  // //     handler() {
+  // //       // 数据更新了，但是DOM还没有更新
+  // //       this.$nextTick(() => {
+  // //         new Swiper(".swiper-container", {
+  // //           loop: true, // 循环模式选项
+  // //           // 如果需要分页器
+  // //           pagination: {
+  // //             el: ".swiper-pagination",
+  // //             clickable: true,
+  // //           },
+  // //           // 如果需要前进后退按钮
+  // //           navigation: {
+  // //             nextEl: ".swiper-button-next",
+  // //             prevEl: ".swiper-button-prev",
+  // //           },
+  // //         });
+  // //       });
+  // //     },
+  // //   },
+  // // },
 };
 </script>
 
