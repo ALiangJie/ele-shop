@@ -15,16 +15,20 @@ const router = createRouter({
         redirect: '/home'
     }, {
         path: '/home',
-        component: Home
+        component: Home,
+        meta: {show: true}
     }, {
         path: '/login',
-        component: Login
+        component: Login,
+        meta: {show: false}
     }, {
         path: '/register',
-        component: Register
+        component: Register,
+        meta: {show: false}
     }, {
-        path: '/search',
-        component: Search
+        path: '/search/:keyword',
+        component: Search,
+        meta: {show: true}
     }]
 })
 
