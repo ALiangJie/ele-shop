@@ -60,7 +60,15 @@ export default {
     goSearch() {
       //路由传参
       //第一种：字符串形式
-      this.$router.push('/search/'+this.keyword)
+      // this.$router.push('/search/'+this.keyword+"?k="+this.keyword.toUpperCase())
+      //第二种
+      // this.$router.push('/search/${this.keyword}?k=${this.keyword.toUpperCase()}')
+      //第三种
+      this.$router.push({
+        name: 'search',
+        params: {keyword: this.keyword || undefined},
+        query: {k: this.keyword.toUpperCase()}
+    })
     }
   }
 };
