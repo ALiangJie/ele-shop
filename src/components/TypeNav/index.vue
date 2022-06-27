@@ -2,64 +2,7 @@
   <!-- 商品分类导航 -->
   <div class="type-nav">
     <div class="container">
-      <!-- 鼠标离开一级分类 -->
-      <div @mouseleave="leave" @mouseenter="enter">
-        <h2 class="all">全部商品分类</h2>
-        <transition name="sort">
-          <div class="sort" v-show="isShow">
-            <div class="all-sort-list2" @click="goSearch">
-              <div
-                  class="item"
-                  v-for="(c1, index) in categoryList"
-                  :key="c1.categoryId"
-                  :class="{ cur: currentIndex === index }"
-              >
-                <!-- 鼠标进入一级分类 -->
-                <h3 @mouseenter="changeIndex(index)">
-                  <!-- 通过配合自定义属性实现路由跳转与传参 -->
-                  <a
-                      :data-categoryName="c1.categoryName"
-                      :data-category1Id="c1.categoryId"
-                  >{{ c1.categoryName }}</a
-                  >
-                </h3>
-                <!-- 利用js控制二三级分类的显示与隐藏 -->
-                <div
-                    class="item-list clearfix"
-                    :style="{
-                    display: currentIndex === index ? 'block' : 'none',
-                  }"
-                >
-                  <div
-                      class="subitem"
-                      v-for="c2 in c1.categoryChild"
-                      :key="c2.categoryId"
-                  >
-                    <dl class="fore">
-                      <dt>
-                        <a
-                            :data-categoryName="c2.categoryName"
-                            :data-category2Id="c1.categoryId"
-                        >{{ c2.categoryName }}</a
-                        >
-                      </dt>
-                      <dd>
-                        <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
-                          <a
-                              :data-categoryName="c3.categoryName"
-                              :data-category3Id="c3.categoryId"
-                          >{{ c3.categoryName }}</a
-                          >
-                        </em>
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </transition>
-      </div>
+      <h2 class="all">全部商品分类</h2>
       <nav class="nav">
         <a href="###">服装城</a>
         <a href="###">美妆馆</a>
@@ -70,13 +13,59 @@
         <a href="###">有趣</a>
         <a href="###">秒杀</a>
       </nav>
+      <div class="sort">
+        <div class="all-sort-list2">
+          <!--一级分类-->
+          <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId">
+            <h3>
+              <!--一级分类名称-->
+              <a href="">{{ c1.categoryName }}</a>
+            </h3>
+            <div class="item-list clearfix">
+              <!--二级分类-->
+              <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
+                <dl class="fore">
+                  <dt>
+                    <!--二级分类名称-->
+                    <a href="">{{ c2.categoryName }}</a>
+                  </dt>
+                  <dd>
+                    <!--三级分类-->
+                    <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
+                      <!--三级分类名称-->
+                      <a href="">{{ c3.categoryName }}</a>
+                    </em>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "TypeNav",
+  //当组件挂载完毕，可以向服务器发请求
+  mounted() {
+    //通知vuex发请求，获取数据，存储到仓库中
+    this.$store.dispatch('categoryList')
+  },
+  computed: {
+    // 使用对象展开运算符将此对象混入到外部对象中
+    ...mapState({
+      //右侧需要一个函数，立即执行一次
+      //注入一个参数state，为大仓库中的数据
+      categoryList: (state) => {
+        return state.home.categoryList;
+      }
+    })
+  },
   data() {
     return {
       //保存当前鼠标移入一级菜单的索引值，为了移入加背景色
@@ -87,7 +76,7 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 .type-nav {
   border-bottom: 2px solid #e1251b;
 
@@ -124,7 +113,6 @@ export default {
       top: 45px;
       width: 210px;
       height: 461px;
-      // height: 491px;
       position: absolute;
       background: #fafafa;
       z-index: 999;
@@ -145,10 +133,11 @@ export default {
           }
 
           .item-list {
-            // display: none;
+            display: none;
             position: absolute;
             width: 734px;
             min-height: 460px;
+            _height: 200px;
             background: #f7f7f7;
             left: 210px;
             border: 1px solid #ddd;
@@ -198,35 +187,13 @@ export default {
             }
           }
 
-          //   &:hover {
-          //     .item-list {
-          //       display: block;
-          //     }
-          //   }
-        }
-
-        .cur {
-          background-color: rgb(236, 82, 82);
+          &:hover {
+            .item-list {
+              display: block;
+            }
+          }
         }
       }
-    }
-
-    // 三级分类菜单展开的过渡动画
-    // 开始进入
-    .sort-enter {
-      height: 0;
-      // transform: rotate(0deg);
-    }
-
-    //进入完毕
-    .sort-enter-to {
-      height: 461px;
-      // transform: rotate(360deg);
-    }
-
-    //过渡效果
-    .sort-enter-active {
-      transition: all .5s linear;
     }
   }
 }
